@@ -9,6 +9,8 @@
         <a href="resume.html">Resume</a>
         <a href="gallery.html">Photo Gallery</a>
         <a href="geoquiz.html" class="active">Geography Quiz</a>
+        <a href="madlib.html">Mad Lib</a>
+        <a href="blockgame.html">Block Game</a>
     </div>
     <div id="welcomeScreen" style="text-align: center;">
         <h1>Geography Quiz</h1>
@@ -38,7 +40,7 @@
         function loadQuestion(){
             let stateName = quizData[currentQuestion].state;
             document.getElementById("question").innerText = "What is the capital of " + stateName + "?"
-            document.getElementById("feedback").innerText = ""; // Clear feedback for new question
+            document.getElementById("feedback").innerText = "";
         }
         function checkAnswer(){
             let correctAnswer = quizData[currentQuestion].capital;
