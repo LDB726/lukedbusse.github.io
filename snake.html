@@ -59,27 +59,44 @@
                     if (this.y <= 0 || this.y + this.size >= canvas.height) {
                         this.dy *= -1
                     }
-            isColliding(aX, aY, aSize, bX, bY, bSize);{
+                }
+            }
+
+            inBounds() {
+                return this.x >= 0 && this.x + this.size <= canvas.width && this.y >= 0 && this.y + this.size <= canvas.height;
+            }
+
+            isColliding(aX, aY, aSize, bX, bY, bSize){
                 return (
                 aX < bX + bSize &&
                 aX + aSize > bX &&
                 aY < bY + bSize &&
                 aY + aSize > bY
                 );
-                }
+                
             }
+        
         }
+        class Apple {
+            constructor() {
+                this.x = Math.floor(Math.random() * 800);
+                this.y = Math.floor(Math.random() * 500);
+                this.size = 20;
+                this.color = "red";
+            }
+            draw(app) {
+                app.fillStyle = this.color;
+                app.fillRect(this.x, this.y, this.size, this.size);
+            }
         }
 
         // ===== SETUP =====
         function startGame() {
             canvas = document.getElementById("gameCanvas");
             ctx = canvas.getContext("2d");
-            cancelAnimationFrame(test)
-            head = new Head(200, 200);
-
+            head = new Head(200,200);
+            fruit = new Apple()
             document.addEventListener("keydown", handleKeys);
-
             gameLoop();
         }
 
@@ -87,7 +104,7 @@
         function gameLoop() {
             update();
             draw();
-            test = requestAnimationFrame(gameLoop);
+            requestAnimationFrame(gameLoop);
         }
 
         function update() {
